@@ -1,0 +1,89 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MainPage</title>
+    <link rel="stylesheet" href="indexDeco.css">
+
+</head>
+<body>
+    <h3>Bienvenido a </h3>
+    <h1 id="main-title">Stick Corrector</h1>
+    <h4>Un software para corregir errores de hardware con joysticks</h4>
+
+
+    <!-- Placeholder, idealmente se podría reemplazar por un desplegable-->
+    <h3 id="DesplegableA">¿Cuándo usarlo?</h3>
+    <!-- Si tu joystick te mueve hacia un lado sin que presiones nada, puedes arreglarlo con esta app.-->
+    <h3 id="DesplegableB">Instrucciones</h3>
+    <!-- 
+    Requisitos: 
+    -tener instalado Steam.
+    -tener un joystick conectado al pc.
+    Paso a paso:
+    Dentro de la app, ir a "Steam" > "Parámetros" > "Mando" > "Probar entradas del dispositivo" (Comenzar prueba)
+    Steam te mostrará los valores de cada joystick. Por defecto, deberían ser 0 si no estas moviendo nada.
+    Si te muestra otro valor, copia ese número y pégalo en la casilla de abajo (Acuérdate de seleccionar el joystick indicado).
+    Cuando termines, toca el boton de "Ejecutar" y deja la app abierta mientras juegas.
+    -->
+
+    <form>
+        ¿Qué joystick quieres corregir?
+        <select id="joystick-select">
+            <option value="left-joystick">Joystick Izquierdo</option>
+            <option value="right-joystick">Joystick Derecho</option>
+        </select> <br>
+    </form>
+    <input type="number" id="errorInput">
+    <p> Eje X </p><button onclick="ExecuteHorizontal()">Ejecutar</button>
+    <p> Eje Y </p><button onclick="ExecuteVertical()">Ejecutar</button>
+
+    <p id="Versión">Versión 0.0 Esp.</p>
+    <p id="Creado por">Creado por Franco García</p>
+    <p id="Contacto">Contacto: arsenicdev33@gmail.com</p>
+    <button onclick="test()">Q</button>
+
+    <script>
+        
+        function test()
+        {
+        let value = document.getElementById ("errorInput").value;
+        let oppValue = value * -1;  
+            alert ("Value is " + value + " and oppValue is " + oppValue + " resulting in " + (value + oppValue));
+        }
+        //Ejecuta cada frame si se completó en el eje X
+        
+        function ExecuteHorizontal()
+        {
+        let value = document.getElementById ("errorInput").value;
+        let oppValue = value * -1;
+        let result = value + oppValue;
+            if (document.getElementById("joystick-select").value == "left-joystick")
+            {
+                alert(value + " was corrected by " + oppValue + " resulting in " + result);
+            }
+
+            if (document.getElementById("joystick-select").value == "right-joystick")
+            {
+                alert(value + " was corrected by " + oppValue + " resulting in " + (value += oppValue));
+            }
+        }
+                    function ExecuteVertical()
+        {
+        let value = document.getElementById ("errorInput").value;
+        let oppValue = value * -1;
+        let result = value + oppValue;
+            if (document.getElementById("joystick-select").value == "left-joystick")
+            {
+                alert(value + " was corrected by " + oppValue + " resulting in " + result);
+            }
+
+            if (document.getElementById("joystick-select").value == "right-joystick")
+            {
+                alert(value + " was corrected by " + oppValue + " resulting in " + (value += oppValue));
+            }
+        }
+        </script>
+</body>
+</html>
