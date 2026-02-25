@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MainPage</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="indexDeco.css">
 
 </head>
 <body>
@@ -14,13 +14,19 @@
         <p>Si no estás seguro de cómo usar esta app, o tienes alguna otra duda, haz click <a href="ayuda.html">aquí</a></p> <br>
     </div>
 
-    <div>
-        <button id="utilidadButton" onclick="DesplegaUtilidad()">Placeholder</button> <br>
+    <div class="desplegableInfo">
+        <button id="utilidadButton" onclick="DesplegaUtilidad()"><img src=""></button> 
+        <p>¿Cómo funciona?</p> 
+        
+     </div>
+
+        <br>
         <p id="utilidadInfo">Esta app puede "arreglar" temporalmente joysticks con problemas de calibración/offset.</p> <br>
-    </div>
+   
 
     <div>
-        <input type ="number" id="joystickValue" placeholder="Offset del joystick">
+        <p> Indica el offset del joystick y cual está causando problemas</p>
+        <input type ="number" id="joystickOffset" placeholder="Offset del joystick">
             <select id="elegirJoystick">
                 <option value="joystickDerecho">Joystick Derecho</option>
                 <option value="joystickIzquierdo">Joystick Izquierdo</option>
@@ -28,10 +34,38 @@
        
     </div>
     <br>
+    
+    <button onclick="corregirJoystick()">Corregir el joystick</button> <br>
+    
     <div>
-        <p id="creditInfo">Creado por: <a href="https://www.linkedin.com/in/franco-garcía-280667351/">Franco García</a></p>
+        <p id="creditInfo">Creado por: <a href="https://www.linkedin.com/in/franco-garcía-280667351/" target=_blank>Franco García</a></p>
         <p id="versionInfo">Versión: 0.1</p>
         <p id="Contacto">Contacto: arsenicdev33@gmail.com</p>
     </div>
+
+    <script>
+        let offsetValue = 0;
+        let selectedJoystick = document.getElementById('elegirJoystick').value; //Izquierda o derecha.
+        let solucion = 0; //Corrige el offset.
+        let resultadoFinal = 0; //Es para corroborar que todo esté bien. 
+        const joystickValue = document.getElementById('joystickOffset').value;
+        
+        function corregirJoystick(){
+        offsetValue = parseFloat(document.getElementById('joystickOffset').value);
+        solucion = (offsetValue *-1); 
+        resultadoFinal = solucion + offsetValue;
+        
+        if (resultadoFinal === 0) {
+                alert("Ya está funcionando, por favor no cierre la aplicación.")
+            } else {
+                alert("Hubo un error, por favor asegurate de colocar tu offset"); //Solo debería ocurrir si no se coloca el offset.
+            }
+        }
+
+        function DesplegaUtilidad(){
+            //Togglear la visibilidad de la descripción de la utilidad.
+        }
+    
+    </script>
 </body>
 </html>
